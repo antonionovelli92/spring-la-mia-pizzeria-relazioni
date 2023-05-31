@@ -4,10 +4,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 public class Pizza {
@@ -27,11 +29,14 @@ public class Pizza {
     private String foto;
 
     @NotNull(message = "Il campo Prezzo è obbligatorio")
- 
+    @Positive(message = "Il campo Prezzo deve essere un numero positivo")
     private double prezzo;
 
+    @OneToMany(mappedBy = "pizza")
+    private List<OffertaSpeciale> offerteSpeciali;
+
     public Pizza() {
-        // Costruttore di default 
+        // Costruttore di default
     }
 
     public Pizza(String nome, String descrizione, String foto, double prezzo) {
@@ -79,5 +84,13 @@ public class Pizza {
 
     public void setPrezzo(double prezzo) {
         this.prezzo = prezzo;
+    }
+
+    public List<OffertaSpeciale> getOfferteSpeciali() {
+        return offerteSpeciali;
+    }
+
+    public void setOfferteSpeciali(List<OffertaSpeciale> offerteSpeciali) {
+        this.offerteSpeciali = offerteSpeciali;
     }
 }
