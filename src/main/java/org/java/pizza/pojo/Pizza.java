@@ -1,5 +1,6 @@
 package org.java.pizza.pojo;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -7,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
+
 import jakarta.validation.constraints.Size;
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
 public class Pizza {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id; 
 
     @NotBlank(message = "Il campo Nome è obbligatorio")
     @Size(max = 50, message = "Il campo Nome deve essere lungo al massimo 50 caratteri")
@@ -29,7 +30,6 @@ public class Pizza {
     private String foto;
 
     @NotNull(message = "Il campo Prezzo è obbligatorio")
-    @Positive(message = "Il campo Prezzo deve essere un numero positivo")
     private double prezzo;
 
     @OneToMany(mappedBy = "pizza")
@@ -46,11 +46,11 @@ public class Pizza {
         setPrezzo(prezzo);
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

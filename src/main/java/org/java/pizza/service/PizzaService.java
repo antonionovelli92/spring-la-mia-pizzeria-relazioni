@@ -44,5 +44,10 @@ public class PizzaService {
     public void deleteById(int id) {
         pizzaRepository.deleteById(id);
     }
+    public Pizza getPizzaById(int pizzaId) {
+        return pizzaRepository.findById(pizzaId)
+                .orElseThrow(() -> new IllegalArgumentException("Pizza non trovata con ID: " + pizzaId));
+    }
+
 
 }

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Modifica Offerta Speciale</title>
+</head>
+<body>
+    <h2>Modifica Offerta Speciale</h2>
+    <form method="post" th:object="${offertaSpeciale}" th:action="@{/pizza/{pizzaId}/offerta/{offertaId}/modifica(pizzaId=${offertaSpeciale.pizza.id}, offertaId=${offertaSpeciale.id})}">
+        <div>
+            <label>Titolo:</label>
+            <input type="text" th:field="*{titolo}" />
+            <span th:if="${#fields.hasErrors('titolo')}" th:errors="*{titolo}"></span>
+        </div>
+        <div>
+            <label>Percentuale Sconto:</label>
+            <input type="number" th:field="*{percentualeSconto}" />
+            <span th:if="${#fields.hasErrors('percentualeSconto')}" th:errors="*{percentualeSconto}"></span>
+        </div>
+        <div>
+            <label>Data di inizio:</label>
+            <input type="date" th:field="*{dataInizio}" />
+            <span th:if="${#fields.hasErrors('dataInizio')}" th:errors="*{dataInizio}"></span>
+        </div>
+        <div>
+            <label>Data di fine:</label>
+            <input type="date" th:field="*{dataFine}" />
+            <span th:if="${#fields.hasErrors('dataFine')}" th:errors="*{dataFine}"></span>
+        </div>
+        <input type="submit" value="Salva" />
+    </form>
+</body>
+</html>

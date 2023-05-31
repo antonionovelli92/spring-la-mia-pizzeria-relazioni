@@ -17,7 +17,22 @@
                 <p class="card-text">Prezzo: <span th:text="${pizza.prezzo}"></span></p>
             </div>
         </div>
-        <a th:href="@{/}">Torna all'elenco pizze</a>
+        
+        <!-- Aggiungi il link per andare al form di creazione di una nuova offerta -->
+        <a class="btn btn-primary" th:href="@{/pizza/{pizzaId}/offerta/nuova(pizzaId=${pizza.id})}">Crea nuova offerta speciale</a>
+        
+        <div>
+            <h2>Offerte speciali</h2>
+            <ul>
+                <li th:each="offertaSpeciale : ${offerteSpeciali}">
+                    <h4 th:text="${offertaSpeciale.titolo}"></h4>
+                    <p>Percentuale di sconto: <span th:text="${offertaSpeciale.percentualeSconto}"></span></p>
+                    <a class="btn btn-primary" th:href="@{/pizza/{pizzaId}/offerta/{offertaId}/modifica(pizzaId=${pizza.id}, offertaId=${offertaSpeciale.id})}">Modifica offerta speciale</a>
+                </li>
+            </ul>
+        </div>
+
+        <a class="btn btn-primary" th:href="@{/}">Torna all'elenco pizze</a>
     </div>
 </body>
 </html>

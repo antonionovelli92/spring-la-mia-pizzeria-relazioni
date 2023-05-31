@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class OffertaSpeciale {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id; 
 
     @ManyToOne
     @JoinColumn(name = "pizza_id")
@@ -32,13 +32,13 @@ public class OffertaSpeciale {
 
     @NotNull(message = "La percentuale di sconto è obbligatoria")
     @Positive(message = "La percentuale di sconto deve essere un numero positivo")
-    private int percentualeSconto;
+    private Integer percentualeSconto;
 
     public OffertaSpeciale() {
         
     }
 
-    public OffertaSpeciale(Pizza pizza, LocalDate dataInizio, LocalDate dataFine, String titolo, int percentualeSconto) {
+    public OffertaSpeciale(Pizza pizza, LocalDate dataInizio, LocalDate dataFine, String titolo, Integer percentualeSconto) {
         setPizza(pizza);
         setDataInizio(dataInizio);
         setDataFine(dataFine);
@@ -46,11 +46,11 @@ public class OffertaSpeciale {
         setPercentualeSconto(percentualeSconto);
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -86,11 +86,11 @@ public class OffertaSpeciale {
         this.titolo = titolo;
     }
 
-    public int getPercentualeSconto() {
+    public Integer getPercentualeSconto() {
         return percentualeSconto;
     }
 
-    public void setPercentualeSconto(int percentualeSconto) {
+    public void setPercentualeSconto(Integer percentualeSconto) {
         this.percentualeSconto = percentualeSconto;
     }
 }

@@ -9,40 +9,37 @@
 <body>
     <div class="container">
         <h1>Elenco Pizze</h1>
-        <form action="/" method="post">
+        <form action="/pizza" method="post">
             <label for="filtro">Filtra per nome:</label>
             <input type="text" id="filtro" name="filtro">
             <button type="submit">Filtra</button>
         </form>
-    <table class="table">
-    <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Descrizione</th>
-            <th>Foto</th>
-            <th>Prezzo</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr th:each="pizza : ${pizze}">
-            <td>
-                <a th:href="@{/pizze/{id}(id=${pizza.id})}" th:text="${pizza.nome}"></a>
-            </td>
-            <td th:text="${pizza.descrizione}"></td>
-            <td th:text="${pizza.foto}"></td>
-            <td th:text="${pizza.prezzo}"></td>
-            <td>
-            <a th:href="@{/edit/{id}(id=${pizza.id})}">Edit</a>
-            <a th:href="@{/delete/{id}(id=${pizza.id})}">Trash</a>
-        </td>
-        </tr>
-        <!-- Mostra un messaggio se l'elenco delle pizze è vuoto -->
-        <tr th:if="${pizze.empty}">
-            <td colspan="4" class="text-center">Non ci sono pizze disponibili.</td>
-        </tr>
-    </tbody>
-</table>
-        <a class="btn btn-primary rounded-2 shadow" th:href="@{/new}">Crea nuova pizza</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Descrizione</th>
+                    <th>Foto</th>
+                    <th>Prezzo</th>
+                    <th>Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="pizza : ${pizze}">
+                    <td>
+                        <a th:href="@{/pizza/{id}(id=${pizza.id})}" th:text="${pizza.nome}"></a>
+                    </td>
+                    <td th:text="${pizza.descrizione}"></td>
+                    <td th:text="${pizza.foto}"></td>
+                    <td th:text="${pizza.prezzo}"></td>
+                    <td>
+                        <a class="btn btn-primary" th:href="@{/pizza/edit/{id}(id=${pizza.id})}">Modifica</a>
+                        <a class="btn btn-danger" th:href="@{/pizza/delete/{id}(id=${pizza.id})}">Elimina</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a class="btn btn-primary rounded-2 shadow" th:href="@{/pizza/new}">Crea nuova pizza</a>
     </div>
 </body>
 </html>
