@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dettaglio Pizza</title>
+    <!-- Aggiungi il link al file CSS di Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Dettaglio Pizza</h1>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${pizza.nome}"></h5>
+                <p class="card-text" th:text="${pizza.descrizione}"></p>
+                <img class="card-img-top" th:src="${pizza.foto}" alt="Immagine Pizza">
+                <p class="card-text">Prezzo: <span th:text="${pizza.prezzo}"></span></p>
+            </div>
+        </div>
+        <a th:href="@{/}">Torna all'elenco pizze</a>
+    </div>
+</body>
+</html>
