@@ -47,19 +47,9 @@ public class PizzaApplication implements CommandLineRunner {
 		System.out.println(p4);
 		pizzaService.save(p4);
 
-		OffertaSpeciale offerta1 = new OffertaSpeciale(p, LocalDate.now(), LocalDate.now().plusDays(7), "Offerta del giorno", 5);
-		OffertaSpeciale offerta2 = new OffertaSpeciale(p2, LocalDate.now(), LocalDate.now().plusDays(7), "Offerta speciale", 8);
-		OffertaSpeciale offerta3 = new OffertaSpeciale(p3, LocalDate.now(), LocalDate.now().plusDays(7), "Speciale", 8);
-		OffertaSpeciale offerta4 = new OffertaSpeciale(p4, LocalDate.now(), LocalDate.now().plusDays(7), "Offerta", 8);
-
-		offertaSpecialeService.save(offerta1);
-		offertaSpecialeService.save(offerta2);
-		offertaSpecialeService.save(offerta3);
-		offertaSpecialeService.save(offerta4);
-		
 		List<Pizza> pizze = pizzaService.findAll();
 		System.out.println(pizze);
-
+		
 		Optional<Pizza> optPizza = pizzaService.findById(1);
 		
 		if (optPizza.isPresent()) {
@@ -70,6 +60,16 @@ public class PizzaApplication implements CommandLineRunner {
 		} else {
 			System.out.println("Pizza con id 1 non trovata :-(");
 		}
+		
+		OffertaSpeciale offerta1 = new OffertaSpeciale(p, LocalDate.now(), LocalDate.now().plusDays(7), "Offerta del giorno", 5);
+		OffertaSpeciale offerta2 = new OffertaSpeciale(p2, LocalDate.now(), LocalDate.now().plusDays(7), "Offerta speciale", 8);
+		OffertaSpeciale offerta3 = new OffertaSpeciale(p3, LocalDate.now(), LocalDate.now().plusDays(7), "Speciale", 8);
+		OffertaSpeciale offerta4 = new OffertaSpeciale(p4, LocalDate.now(), LocalDate.now().plusDays(7), "Offerta", 8);
+
+		offertaSpecialeService.save(offerta1);
+		offertaSpecialeService.save(offerta2);
+		offertaSpecialeService.save(offerta3);
+		offertaSpecialeService.save(offerta4);
 		
 		List<OffertaSpeciale> offerte = offertaSpecialeService.findAll();
 		System.out.println(offerte);

@@ -12,26 +12,26 @@
             <div class="mb-3">
                 <label for="nome" class="form-label">Nome:</label>
                 <input type="text" id="nome" th:field="*{nome}" class="form-control" required>
-                <label style="color: red" th:if="${errors != null && errors.hasFieldErrors('nome')}"
-                       th:text="${errors.getFieldError('nome').defaultMessage}"></label>
+                <label style="color: red" th:if="${#fields.hasErrors('nome')}"
+                       th:errors="*{nome}"></label>
             </div>
             <div class="mb-3">
                 <label for="descrizione" class="form-label">Descrizione:</label>
                 <textarea id="descrizione" th:field="*{descrizione}" class="form-control" required></textarea>
-                <label style="color: red" th:if="${errors != null && errors.hasFieldErrors('descrizione')}"
-                       th:text="${errors.getFieldError('descrizione').defaultMessage}"></label>
+                <label style="color: red" th:if="${#fields.hasErrors('descrizione')}"
+                       th:errors="*{descrizione}"></label>
             </div>
             <div class="mb-3">
                 <label for="foto" class="form-label">Foto:</label>
                 <input type="text" id="foto" th:field="*{foto}" class="form-control" required>
-                <label style="color: red" th:if="${errors != null && errors.hasFieldErrors('foto')}"
-                       th:text="${errors.getFieldError('foto').defaultMessage}"></label>
+                <label style="color: red" th:if="${#fields.hasErrors('foto')}"
+                       th:errors="*{foto}"></label>
             </div>
             <div class="mb-3">
                 <label for="prezzo" class="form-label">Prezzo:</label>
                 <input type="number" id="prezzo" th:field="*{prezzo}" class="form-control" required>
-                <label style="color: red" th:if="${errors != null && errors.hasFieldErrors('prezzo')}"
-                       th:text="${errors.getFieldError('prezzo').defaultMessage}"></label>
+                <label style="color: red" th:if="${#fields.hasErrors('prezzo')}"
+                       th:errors="*{prezzo}"></label>
             </div>
             <button type="submit" class="btn btn-primary">Crea</button>
         </form>

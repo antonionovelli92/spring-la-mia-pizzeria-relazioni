@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/pizza")
 public class PizzaController {
     private final PizzaService pizzaService;
     private final OffertaSpecialeService offertaSpecialeService;
@@ -32,7 +31,7 @@ public class PizzaController {
         return "index";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/pizza/{id}")
     public String getPizza(@PathVariable("id") int id, Model model) {
         Pizza pizza = pizzaService.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid pizza Id: " + id));
@@ -44,23 +43,23 @@ public class PizzaController {
         return "pizza";
     }
 
-    @GetMapping("/new")
+    @GetMapping("/pizza/new")
     public String showCreatePizzaForm(Model model) {
         model.addAttribute("pizza", new Pizza());
         return "createPizzaForm";
     }
 
-    @PostMapping("/create")
+    @PostMapping("/pizza/create")
     public String createPizza(@Valid @ModelAttribute("pizza") Pizza pizza, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "createPizzaForm";
         }
 
         pizzaService.save(pizza);
-        return "redirect:/pizza";
+        return "redirect:/";
     }
 
-    @PostMapping("/")
+    @PostMapping("/pizza")
     public String indexWithFilter(Model model, @RequestParam("filtro") String filtro) {
         List<Pizza> pizze = pizzaService.getAllPizzeByNome(filtro);
         model.addAttribute("pizze", pizze);
@@ -68,7 +67,7 @@ public class PizzaController {
         return "index";
     }
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/pizza/edit/{id}")
     public String showEditPizzaForm(@PathVariable("id") int id, Model model) {
         Pizza pizza = pizzaService.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid pizza Id: " + id));
@@ -77,7 +76,7 @@ public class PizzaController {
         return "editPizzaForm";
     }
 
-    @PostMapping("/update/{id}")
+    @PostMapping("/pizza/update/{id}")
     public String updatePizza(@PathVariable("id") int id, @ModelAttribute("pizza") @Valid Pizza updatedPizza,
                               BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
@@ -94,12 +93,12 @@ public class PizzaController {
                 });
 
         model.addAttribute("message", "Pizza aggiornata con successo!");
-        return "redirect:/pizza";
+        return "redirect:/";
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/pizza/delete/{id}")
     public String deletePizza(@PathVariable("id") int id) {
         pizzaService.deleteById(id);
-        return "redirect:/pizza";
+        return "redirect:/";
     }
 }
