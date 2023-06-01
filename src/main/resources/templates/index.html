@@ -8,12 +8,18 @@
 </head>
 <body>
     <div class="container">
-        <h1>Elenco Pizze</h1>
-        <form action="/pizza" method="post">
-            <label for="filtro">Filtra per nome:</label>
-            <input type="text" id="filtro" name="filtro">
-            <button type="submit">Filtra</button>
+        <header class="text-center my-5">
+            <img src="https://img.freepik.com/premium-vector/pizza-logo-design-template_15146-192.jpg" alt="Logo Pizza" width="100">
+            <h1 class="mb-3">Elenco Pizze</h1>
+        </header>
+        
+        <form action="/pizza" method="post" class="mb-3">
+            <div class="input-group">
+                <input type="text" id="filtro" name="filtro" class="form-control" placeholder="Filtra per nome">
+                <button type="submit" class="btn btn-primary">Filtra</button>
+            </div>
         </form>
+        
         <table class="table">
             <thead>
                 <tr>
@@ -33,12 +39,15 @@
                     <td th:text="${pizza.foto}"></td>
                     <td th:text="${pizza.prezzo}"></td>
                     <td>
-                        <a class="btn btn-primary" th:href="@{/pizza/edit/{id}(id=${pizza.id})}">Modifica</a>
-                        <a class="btn btn-danger" th:href="@{/pizza/delete/{id}(id=${pizza.id})}">Elimina</a>
+                         <div class="btn-group" role="group">
+                            <a class="btn btn-primary" th:href="@{/pizza/edit/{id}(id=${pizza.id})}">Modifica</a>
+                            <a class="btn btn-danger" th:href="@{/pizza/delete/{id}(id=${pizza.id})}">Elimina</a>
+                        </div>
                     </td>
                 </tr>
             </tbody>
         </table>
+        
         <a class="btn btn-primary rounded-2 shadow" th:href="@{/pizza/new}">Crea nuova pizza</a>
     </div>
 </body>

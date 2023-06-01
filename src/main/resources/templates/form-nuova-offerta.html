@@ -5,7 +5,7 @@
 </head>
 <body>
     <h2>Nuova Offerta Speciale</h2>
-    <form th:action="@{/pizza/{pizzaId}/offerta/nuova(pizzaId=${pizzaId})}" th:object="${offertaSpeciale}" method="post">
+    <form th:action="@{/offerta/nuova(pizzaId=${pizzaId})}" th:object="${offertaSpeciale}" method="post">
         <div>
             <label>Titolo:</label>
             <input type="text" th:field="*{titolo}" />
@@ -26,7 +26,7 @@
             <input type="date" th:field="*{dataFine}" />
             <span th:if="${#fields.hasErrors('dataFine')}" th:errors="*{dataFine}"></span>
         </div>
-		<input type="hidden" th:name="pizzaId" th:value="${pizzaId}" />
+        <input type="hidden" th:name="pizzaId" th:value="${pizzaId}" />
         <input type="submit" value="Salva" />
     </form>
 </body>

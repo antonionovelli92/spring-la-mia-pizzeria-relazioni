@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/offerta")
 public class OffertaSpecialeController {
 
     private final OffertaSpecialeService offertaSpecialeService;
@@ -24,7 +23,7 @@ public class OffertaSpecialeController {
         this.pizzaService = pizzaService;
     }
 
-    @GetMapping("/{pizzaId}/nuova")
+    @GetMapping("/offerta/{pizzaId}/nuova")
     public String mostraFormNuovaOfferta(@PathVariable("pizzaId") int pizzaId, Model model) {
         Pizza pizza = pizzaService.findById(pizzaId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid pizza Id: " + pizzaId));
@@ -37,7 +36,7 @@ public class OffertaSpecialeController {
         return "form-nuova-offerta";
     }
 
-    @PostMapping("/nuova")
+    @PostMapping("/offerta/nuova")
     public String salvaOffertaSpeciale(@RequestParam("pizzaId") int pizzaId,
                                        @Valid @ModelAttribute("offertaSpeciale") OffertaSpeciale offertaSpeciale,
                                        BindingResult result) {
@@ -54,7 +53,7 @@ public class OffertaSpecialeController {
         return String.format("redirect:/pizza/%d", pizzaId);
     }
 
-    @GetMapping("/{offertaId}/modifica")
+    @GetMapping("/offerta/{offertaId}/modifica")
     public String mostraFormModificaOfferta(@PathVariable("offertaId") int offertaId, Model model) {
         OffertaSpeciale offertaSpeciale = offertaSpecialeService.findById(offertaId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid offerta Id: " + offertaId));
@@ -65,7 +64,7 @@ public class OffertaSpecialeController {
         return "form-modifica-offerta";
     }
 
-    @PostMapping("/{offertaId}/modifica")
+    @PostMapping("/offerta/{offertaId}/modifica")
     public String salvaModificheOfferta(@PathVariable("offertaId") int offertaId,
                                         @Valid @ModelAttribute("offertaSpeciale") OffertaSpeciale offertaSpeciale,
                                         BindingResult result) {
@@ -81,7 +80,7 @@ public class OffertaSpecialeController {
         return "redirect:/pizza/" + pizza.getId();
     }
 
-    @GetMapping("/{offertaId}/offerte")
+    @GetMapping("/offerta/{offertaId}/offerte")
     public String getOfferteSpeciali(@PathVariable("offertaId") int offertaId, Model model) {
         OffertaSpeciale offertaSpeciale = offertaSpecialeService.findById(offertaId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid offerta Id: " + offertaId));

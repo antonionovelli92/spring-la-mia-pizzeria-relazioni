@@ -5,7 +5,7 @@
 </head>
 <body>
     <h2>Modifica Offerta Speciale</h2>
-    <form method="post" th:object="${offertaSpeciale}" th:action="@{/pizza/{pizzaId}/offerta/{offertaId}/modifica(pizzaId=${offertaSpeciale.pizza.id}, offertaId=${offertaSpeciale.id})}">
+    <form method="post" th:object="${offertaSpeciale}" th:action="@{/offerta/{pizzaId}/modifica(offertaId=${offertaSpeciale.id}, pizzaId=${offertaSpeciale.pizza.id})}">
         <div>
             <label>Titolo:</label>
             <input type="text" th:field="*{titolo}" />

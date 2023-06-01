@@ -8,7 +8,11 @@
 </head>
 <body>
     <div class="container">
-        <h1>Dettaglio Pizza</h1>
+        <header class="text-center my-5">
+			  <a  th:href="@{/}"><img src="https://img.freepik.com/premium-vector/pizza-logo-design-template_15146-192.jpg" alt="Logo Pizza" width="100"></a>
+            <h1 class="mb-3">Dettaglio Pizza</h1>
+        </header>
+        
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title" th:text="${pizza.nome}"></h5>
@@ -18,21 +22,20 @@
             </div>
         </div>
         
-        <!-- Aggiungi il link per andare al form di creazione di una nuova offerta -->
-        <a class="btn btn-primary" th:href="@{/pizza/{pizzaId}/offerta/nuova(pizzaId=${pizza.id})}">Crea nuova offerta speciale</a>
+        <a class="btn btn-primary mt-3" th:href="@{/offerta/{pizzaId}/nuova(pizzaId=${pizza.id})}">Crea nuova offerta speciale</a>
         
-        <div>
+        <div class="mt-5">
             <h2>Offerte speciali</h2>
-            <ul>
-                <li th:each="offertaSpeciale : ${offerteSpeciali}">
+            <ul class="list-group">
+                <li class="list-group-item" th:each="offertaSpeciale : ${offerteSpeciali}">
                     <h4 th:text="${offertaSpeciale.titolo}"></h4>
                     <p>Percentuale di sconto: <span th:text="${offertaSpeciale.percentualeSconto}"></span></p>
-                    <a class="btn btn-primary" th:href="@{/pizza/{pizzaId}/offerta/{offertaId}/modifica(pizzaId=${pizza.id}, offertaId=${offertaSpeciale.id})}">Modifica offerta speciale</a>
+                    <a class="btn btn-primary" th:href="@{/offerta/{offertaId}/modifica(offertaId=${offertaSpeciale.id})}">Modifica offerta speciale</a>
                 </li>
             </ul>
         </div>
-
-        <a class="btn btn-primary" th:href="@{/}">Torna all'elenco pizze</a>
+        
+        <a class="btn btn-primary mt-3" th:href="@{/}">Torna all'elenco pizze</a>
     </div>
 </body>
 </html>
