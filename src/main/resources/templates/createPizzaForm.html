@@ -12,26 +12,32 @@
             <div class="mb-3">
                 <label for="nome" class="form-label">Nome:</label>
                 <input type="text" id="nome" th:field="*{nome}" class="form-control" required>
-                <label style="color: red" th:if="${#fields.hasErrors('nome')}"
-                       th:errors="*{nome}"></label>
+                <label style="color: red" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></label>
             </div>
             <div class="mb-3">
                 <label for="descrizione" class="form-label">Descrizione:</label>
                 <textarea id="descrizione" th:field="*{descrizione}" class="form-control" required></textarea>
-                <label style="color: red" th:if="${#fields.hasErrors('descrizione')}"
-                       th:errors="*{descrizione}"></label>
+                <label style="color: red" th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></label>
             </div>
             <div class="mb-3">
                 <label for="foto" class="form-label">Foto:</label>
                 <input type="text" id="foto" th:field="*{foto}" class="form-control" required>
-                <label style="color: red" th:if="${#fields.hasErrors('foto')}"
-                       th:errors="*{foto}"></label>
+                <label style="color: red" th:if="${#fields.hasErrors('foto')}" th:errors="*{foto}"></label>
             </div>
             <div class="mb-3">
                 <label for="prezzo" class="form-label">Prezzo:</label>
                 <input type="number" id="prezzo" th:field="*{prezzo}" class="form-control" required>
-                <label style="color: red" th:if="${#fields.hasErrors('prezzo')}"
-                       th:errors="*{prezzo}"></label>
+                <label style="color: red" th:if="${#fields.hasErrors('prezzo')}" th:errors="*{prezzo}"></label>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Ingredienti:</label>
+                <div th:each="ingrediente : ${ingredienti}">
+                    <div class="form-check">
+                        <input type="checkbox" id="ingrediente" th:field="*{ingredienti}" th:value="${ingrediente.id}">
+                        <label for="ingrediente" th:text="${ingrediente.nome}"></label>
+                    </div>
+                </div>
+                <label style="color: red" th:if="${#fields.hasErrors('ingredienti')}" th:errors="*{ingredienti}"></label>
             </div>
             <button type="submit" class="btn btn-primary">Crea</button>
         </form>

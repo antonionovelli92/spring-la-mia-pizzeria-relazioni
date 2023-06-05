@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dettagli Ingrediente</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <h1>Dettagli Ingrediente</h1>
+
+    <div>
+        <p><strong>ID:</strong> <span th:text="${ingrediente.id}"></span></p>
+        <p><strong>Nome:</strong> <span th:text="${ingrediente.nome}"></span></p>
+    </div>
+
+    <a class="btn btn-primary" href="/ingredienti">Torna all'elenco degli ingredienti</a>
+</body>
+</html>

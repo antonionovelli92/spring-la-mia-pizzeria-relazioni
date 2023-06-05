@@ -1,14 +1,15 @@
 package org.java.pizza.pojo;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-
 import jakarta.validation.constraints.Size;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class Pizza {
     @Size(max = 50, message = "Il campo Nome deve essere lungo al massimo 50 caratteri")
     private String nome;
 
-    @NotBlank(message = "Il campo Descrizione è obbligatorio")
+    @NotBlank(message = "Il campo Descrizione è obbligatorio")				
     @Size(max = 200, message = "Il campo Descrizione deve essere lungo al massimo 200 caratteri")
     private String descrizione;
 
@@ -32,11 +33,17 @@ public class Pizza {
     @NotNull(message = "Il campo Prezzo è obbligatorio")
     private double prezzo;
 
+    @ManyToMany
+    @JoinTable(name = "pizza_ingrediente",
+               joinColumns = @JoinColumn(name = "pizza_id"),
+               inverseJoinColumns = @JoinColumn(name = "ingrediente_id"))
+    private List<Ingrediente> ingredienti;
+
     @OneToMany(mappedBy = "pizza")
     private List<OffertaSpeciale> offerteSpeciali;
 
     public Pizza() {
-        // Costruttore di default
+        
     }
 
     public Pizza(String nome, String descrizione, String foto, double prezzo) {
@@ -84,6 +91,14 @@ public class Pizza {
 
     public void setPrezzo(double prezzo) {
         this.prezzo = prezzo;
+    }
+
+    public List<Ingrediente> getIngredienti() {
+        return ingredienti;
+    }
+
+    public void setIngredienti(List<Ingrediente> ingredienti) {
+        this.ingredienti = ingredienti;
     }
 
     public List<OffertaSpeciale> getOfferteSpeciali() {
